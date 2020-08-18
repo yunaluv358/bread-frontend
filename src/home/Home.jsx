@@ -10,13 +10,9 @@ export const Home = () => {
 
     const [landingPageData,setLandingPageData] = useState({})
 
-    const getlandingPageData = () => {
-        setLandingPageData(JsonData)
-    }
-
     useEffect(() => {
         setLandingPageData(JsonData)
-    })
+    },[])
 
     // const componentDidMount = () => {
     //     getlandingPageData();

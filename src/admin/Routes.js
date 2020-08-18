@@ -59,7 +59,6 @@ const Admin = () => {
       />
     </Switch>
   );
-  //
 };
 
 export default Admin;

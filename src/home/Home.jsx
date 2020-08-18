@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react'
+import React, {Component, useEffect, useState} from 'react'
 import Navigation from './Navigation';
 import Header from './Header';
 import Features from './Features';
@@ -14,9 +14,13 @@ export const Home = () => {
         setLandingPageData(JsonData)
     }
 
-    const componentDidMount = () => {
-        getlandingPageData();
-    }
+    useEffect(() => {
+        setLandingPageData(JsonData)
+    })
+
+    // const componentDidMount = () => {
+    //     getlandingPageData();
+    // }
     return (
         <div>
             <Navigation />

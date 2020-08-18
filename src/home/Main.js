@@ -33,6 +33,7 @@ import rootReducer from '../RootReducer'
 import LoginForm from "../user/LoginForm";
 import {MemberManagement} from "../admin/MemberManagement";
 import {ProductRegistration} from "../admin/ProductRegistration";
+import ModifyingInformation from "../admin/ModifyingInformation";
 
 
 
@@ -96,6 +97,12 @@ const Main = () => {
                                 exact
                                 layout={MainLayout}
                                 path="/productRegistration"
+                            />
+                            <RouteWithLayout
+                                component={ModifyingInformation}
+                                exact
+                                layout={MainLayout}
+                                path="/modifyingInformation"
                             />
                         </Switch>
                     </ThemeProvider>

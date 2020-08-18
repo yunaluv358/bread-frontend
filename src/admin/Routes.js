@@ -3,16 +3,10 @@ import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from "./RouteWithLayout";
 import Dashboard from "./Dashboard";
 import MainLayout from './AdminMain';
-// import {Shipping} from "./shipping/index";
-// import {Chart} from "./chart/index";
-// import {ProductRegistration} from "./productRegistration/index";
-// import {MemberManagement} from "./memberManagement/index";
 import {Chart} from "../chart/Chart";
-import {MemberManagement} from "./MemberManagement";
 import {ProductRegistration} from "./ProductRegistration";
 import {Shipping} from "../shipping/Shipping";
-
-
+import {MemberManagement} from "./MemberManagement";
 const Admin = () => {
   return (
     <Switch>

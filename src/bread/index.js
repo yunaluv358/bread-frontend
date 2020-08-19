@@ -1,3 +1,3 @@
 export {default as Bread} from './Bread'
-export {Breads, default as BreadsReducer} from './Breads'
+export {BreadList, default as BreadsReducer} from './BreadList'
 export {default as Bread01} from './Bread01'

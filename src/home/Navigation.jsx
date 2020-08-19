@@ -29,7 +29,7 @@ export const Navigation = () => {
               <a className="navbar-brand page-scroll" href="AboutDetail">
                 ABOUT   </a>{" "}
 
-              <a className="navbar-brand page-scroll" href="Breads">
+              <a className="navbar-brand page-scroll" href="BreadList">
                 LIST   </a>{" "}
 
               <a className="navbar-brand page-scroll" href="Pages">

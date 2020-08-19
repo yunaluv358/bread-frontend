@@ -4,6 +4,7 @@ import './index.css';
 import App_fp from './App_fp';
 import * as serviceWorker from './serviceWorker';
 import 'font-awesome/css/font-awesome.css';
+import Breads from "./bread/Breads";
 
 
 ReactDOM.render(

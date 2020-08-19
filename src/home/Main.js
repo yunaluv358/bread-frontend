@@ -5,7 +5,7 @@ import Services from './services';
 import Testimonials from './testimonials';
 import Team from './Team';
 import Contact from './contact';
-import {Breads} from "../bread/Breads";
+import {BreadList} from "../bread/BreadList";
 import {Features} from "./Features";
 import {About} from './About';
 import {App} from '../App';
@@ -48,7 +48,7 @@ const Main = () => {
                     <Route path="/testimonials" component = {Testimonials}/>
                     <Route path="/team" component = {Team}/>
                     <Route path="/contact" component = {Contact}/>
-                    <Route path="/breads" component = {Breads} />
+                    <Route path="/BreadList" component = {BreadList} />
                     <Route path="/search" component={Search}/>
                     <Route path="/signin" component={Signin}/>
                     <Route path="/signup" component={Signup}/>

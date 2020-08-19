@@ -5,7 +5,6 @@ const List = ({title,columns,data,editable}) => {
         <>
             <MaterialTable title={title} columns={columns}
                            data={data} editable={editable}
-
             />
         </>
     );

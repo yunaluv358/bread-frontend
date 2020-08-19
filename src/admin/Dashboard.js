@@ -38,7 +38,7 @@ const Dashboard = () => {
           <Shipping />
         </Grid>
 
-        <Grid style={{position:"relative",top:'-650px',width:'30%',height:'30%'}}
+        <Grid style={{position:"relative",top:'-500px',width:'30%',height:'22%'}}
         >
           <UserList />
         </Grid>

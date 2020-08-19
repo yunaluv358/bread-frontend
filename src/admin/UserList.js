@@ -3,10 +3,9 @@ import List from './List'
 import axios from "axios";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import {Button} from "@material-ui/core";
+
 const UserList = () => {
-
     const [data,setData] = useState([])
-
     useEffect(() => {
         axios.get(`http://localhost:8080/user/findAll`)
             .then((res)=>{
@@ -17,7 +16,6 @@ const UserList = () => {
                 alert("재시도 바랍니다")
             })
     },[])
-
     const columns = [
         {
             title:'아이디',field:'userId'

@@ -35,6 +35,7 @@ import {MemberManagement} from "../admin/MemberManagement";
 import {ProductRegistration} from "../admin/ProductRegistration";
 import ModifyingInformation from "../admin/ModifyingInformation";
 import UserList from "../admin/UserList";
+import BreadList from "../admin/BreadList";
 
 
 
@@ -110,6 +111,12 @@ const Main = () => {
                             layout={MainLayout}
                             path="/userList"
                         />
+                            <RouteWithLayout
+                                component={BreadList}
+                                exact
+                                layout={MainLayout}
+                                path="/breadList"
+                            />
                         </Switch>
                     </ThemeProvider>
                 </Switch>

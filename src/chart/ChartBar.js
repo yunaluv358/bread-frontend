@@ -1,6 +1,21 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Bar} from 'react-chartjs-2'
+import axios from 'axios'
 
+// const [data,setData] = useState([])
+//
+// useEffect(()=>{
+//     axios.get(`http://localhost:8080/chart/data`)
+//         .then(res=>{
+//             console.log(JSON.stringify(res))
+//             setData(res.data.list)
+//         })
+//         .catch(
+//             error => {
+//                 throw (error)
+//             }
+//         )
+// },[]);
 
 const chartData = {
     labels:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
@@ -19,6 +34,8 @@ const chartData = {
         },
     ]
 }
+
+
 const ChartBar = props => {
     const {chartValue} = props
     const [dataType, setDataType] = useState(chartData)
@@ -30,6 +47,7 @@ const ChartBar = props => {
     switchCase(chartValue)
     return (
         <div>
+
             <h2>{chartValue}</h2>
             <Bar
                 data={dataType}

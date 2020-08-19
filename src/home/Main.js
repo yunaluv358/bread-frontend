@@ -36,6 +36,7 @@ import {ProductRegistration} from "../admin/ProductRegistration";
 import ModifyingInformation from "../admin/ModifyingInformation";
 import UserList from "../admin/UserList";
 import BreadList from "../admin/BreadList";
+import BoardContainer from "../board/BoardContainer";
 
 
 
@@ -63,6 +64,7 @@ const Main = () => {
                     <Route path="/Contacts" component={Contacts}/>
                     <Route path="/Pages" component={Pages}/>
                     <Route path="/LoginForm" component={LoginForm}/>
+                    <Route path="/board" component={BoardContainer} />
                     <Redirect from="/message" to="/" /> {/* 주소/message 로 접속 시 주소/posts 로 리디렉션 */}
 
 

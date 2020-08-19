@@ -85,9 +85,6 @@ export const Signin = () => {
                     Forgot <a href="#">password?</a>
                 </p>
             </form>
-
-
-
         </section></PageTemplate>
     </>
 

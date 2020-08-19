@@ -29,11 +29,10 @@ const SignupReducer = (state, action) => {
 }
 
 export const Signup = () => {
-    // const classes = useStyles();
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
     const [userName, setUserName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("")
+    const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
 
     const history = useHistory();
@@ -46,11 +45,11 @@ export const Signup = () => {
             userId: userId,
             password: password,
             name: userName,
-            phone: phoneNumber,
+            phone: phone,
             email: email
         }
         axios.post(`http://localhost:8080/user/register`, userData)
-            .then((res) => {
+            .then((ress) => {
                     alert("회원가입 성공 !")
                     history.push("/Signin")
                 }
@@ -86,7 +85,7 @@ export const Signup = () => {
 
                         <div className="form-group">
                             <label>휴대전화</label>
-                            <input type="password" className="form-control" onChange={e => setPhoneNumber(e.target.value)} placeholder="Enter password"/>
+                            <input type="password" className="form-control" onChange={e => setPhone(e.target.value)} placeholder="Enter password"/>
                         </div>
 
                         <div className="form-group">

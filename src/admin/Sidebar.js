@@ -56,7 +56,7 @@ const Sidebar = props => {
     },
     {
       title: '회원관리',
-      href: '/memberManagement',
+      href: 'userList',
       icon: <DashboardIcon />
     },
     {

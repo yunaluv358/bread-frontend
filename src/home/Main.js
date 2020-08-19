@@ -34,6 +34,7 @@ import LoginForm from "../user/LoginForm";
 import {MemberManagement} from "../admin/MemberManagement";
 import {ProductRegistration} from "../admin/ProductRegistration";
 import ModifyingInformation from "../admin/ModifyingInformation";
+import UserList from "../admin/UserList";
 
 
 
@@ -103,7 +104,12 @@ const Main = () => {
                                 exact
                                 layout={MainLayout}
                                 path="/modifyingInformation"
-                            />
+                            /><RouteWithLayout
+                            component={UserList}
+                            exact
+                            layout={MainLayout}
+                            path="/userList"
+                        />
                         </Switch>
                     </ThemeProvider>
                 </Switch>

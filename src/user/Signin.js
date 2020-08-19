@@ -41,7 +41,7 @@ export const Signin = () => {
             userId: userId,
             password: password
         }
-        axios.post(`http://localhost:8080/user/SignIn`, userData)
+        axios.post(`http://localhost:8080/user/signIn`, userData)
             .then(response => {
                     alert("로그인 성공 !")
                     console.log(JSON.stringify(response.data))

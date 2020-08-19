@@ -6,6 +6,7 @@ import {Shipping} from "../shipping/Shipping";
 import {MemberManagement} from "./MemberManagement";
 import ProductRegistration from "./ProductRegistration";
 import {Map} from "../vendor/map";
+import UserList from "./UserList";
 
 
 
@@ -39,7 +40,7 @@ const Dashboard = () => {
 
         <Grid style={{position:"relative",top:'-650px',width:'30%',height:'30%'}}
         >
-          <MemberManagement />
+          <UserList />
         </Grid>
 
         <Grid style={{position:'relative',left:"2%",width:'30%',height:'22%',top:'-620px'}}

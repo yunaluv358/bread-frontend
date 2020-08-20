@@ -1,14 +1,12 @@
 import React, {Component, useEffect, useState} from 'react';
-import _Pagination from './_pagination';
+import  _Pagination from './_Pagination';
 import { _Paginate } from './_Paginate';
 
 export const _BreadPage = () => {
     const [movies, setMovies] = useState([])
-    const [pageSize, setPageSize] = useState(0)
-    const [currentPage, setCurrentPage] = useState(0)
-    const [count, setCount] = useState(0)
-
-
+    const [pageSize, setPageSize] = useState(5)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [count, setCount] = useState(1)
 
     const movieList = [
         { id: 0, title: "기생충", genre: "블랙 코미디", release: "2019-05-30" },
@@ -23,16 +21,14 @@ export const _BreadPage = () => {
         { id: 9, title: "코코", genre: "애니메이션", release: "2018-01-11" },
     ]
 
-
-
     useEffect(() => {
         setMovies(movieList)
-        setPageSize(6)
+        setPageSize(5)
         setCurrentPage(1)
     },[])
 
-    const handlePageChange = e => {
-        setCurrentPage(e.target.value); // 페이지 수 클릭 시 현재 페이지 변경
+    const handlePageChange = (page) => {
+        setCurrentPage(page); // 페이지 수 클릭 시 현재 페이지 변경
     }
 
     const countHandler = e => {
@@ -67,8 +63,8 @@ export const _BreadPage = () => {
         </table>
 
         <_Pagination
-            itemsCount={count}
             pageSize={pageSize}
+            itemsCount={movies.length}
             currentPage={currentPage}
             onPageChange={handlePageChange}
         />

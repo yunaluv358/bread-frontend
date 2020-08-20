@@ -35,7 +35,7 @@ export const Navigation = () => {
               <a className="navbar-brand page-scroll" href="Pages">
                 LIST   </a>{" "}
 
-              <a className="navbar-brand page-scroll" href="_Pages">
+              <a className="navbar-brand page-scroll" href="_BreadPage">
                 BREADLIST   </a>{" "}
 
               <a className="navbar-brand page-scroll" href="Search">

@@ -27,7 +27,7 @@ import {Chart} from "../chart/Chart";
 import ContactDetail from "./ContactDetail";
 import Contacts from "../vendor/Contacts";
 import Pages from "../vendor-test/Pages";
-import _Pages from "../bread/_Pages";
+import _BreadPage from "../bread/_BreadPage";
 
 import { createStore } from 'redux'
 import rootReducer from '../RootReducer'
@@ -60,7 +60,7 @@ const Main = () => {
                     <Route path="/ContactDetail" component={ContactDetail}/>
                     <Route path="/Contacts" component={Contacts}/>
                     <Route path="/Pages" component={Pages}/>
-                    <Route path="/_Pages" component={_Pages}/>
+                    <Route path="/_BreadPage" component={_BreadPage}/>
 
 
                     <Redirect from="/message" to="/" /> {/* 주소/message 로 접속 시 주소/posts 로 리디렉션 */}

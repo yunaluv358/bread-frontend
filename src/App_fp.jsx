@@ -22,6 +22,7 @@ const App_fp = () => {
     return (
         <div>
             <Main />
+
         </div>
     )
 }

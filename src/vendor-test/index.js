@@ -1,1 +1,1 @@
-export {default as Pages} from './/Pages'
+export {default as Pages} from './/_Pages'

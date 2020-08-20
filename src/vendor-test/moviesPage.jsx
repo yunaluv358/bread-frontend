@@ -21,7 +21,7 @@ export default class MoviesPage extends Component {
 
     state = {
         movies: this.getMovies(),
-        pageSize: 3,
+        pageSize: 6,
         currentPage: 1
     }
 

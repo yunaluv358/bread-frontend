@@ -9,22 +9,20 @@ const UserList = () => {
     useEffect(() => {
         axios.get(`http://localhost:8080/user/findAll`)
             .then((res)=>{
-                alert("회원리스트 가져옵니다")
                 setData(res.data)
             })
             .catch(()=>{
-                alert("재시도 바랍니다")
             })
     },[])
     const columns = [
+        {
+            title:'이름',field:'name'
+        },
         {
             title:'아이디',field:'userId'
         },
         {
             title:'비밀번호',field:'password'
-        },
-        {
-            title:'이름',field:'name'
         },
         {
             title:'휴대전화',field:'phone'

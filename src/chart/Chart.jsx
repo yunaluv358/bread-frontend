@@ -8,9 +8,7 @@ import { Card,
   Button,
   Menu,
   MenuItem ,
-  Checkbox,
-  FormGroup,
-  FormControlLabel } from '@material-ui/core';
+  FormGroup} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ChartBar from "./ChartBar";
@@ -25,9 +23,6 @@ const ChartReducer = ( state, action ) => {
     default: return state
   }
 }
-
-
-
 
 export const useStyles = makeStyles(() => ({
   root: {
@@ -44,10 +39,6 @@ export const useStyles = makeStyles(() => ({
     justifyContent: 'flex-end'
   }
 }));
-
-
-
-
 export const Chart = props => {
   const { className, ...rest } = props;
   const classes = useStyles();

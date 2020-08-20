@@ -65,7 +65,7 @@ const Sidebar = props => {
       icon: <DashboardIcon />
     },
     {
-      title: '상품등록 수정',
+      title: '빵리스트',
       href: '/productRegistration',
       icon: <DashboardIcon />
     }

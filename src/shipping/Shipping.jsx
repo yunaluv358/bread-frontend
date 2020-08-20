@@ -1,13 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import {
-    Button,
-    Card, CardActions,
-    CardHeader,
-    Divider
-} from '@material-ui/core';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-
+import React, {useEffect, useState} from 'react';
+import List from '../admin/List'
+import axios from 'axios'
 const ShippingTypes = {REQUEST: 'Chart/REQUEST'}
 const ShippingRequest = action => ({type: ShippingTypes.REQUEST, payload: action.payload})
 const ShippingReducer = ( state, action ) => {
@@ -17,136 +10,73 @@ const ShippingReducer = ( state, action ) => {
     }
 }
 
-const useStyles = makeStyles(() => ({
-    root: {
-        height: '100%'
-    },
-    content: {
-        padding: 0
-    },
-    image: {
-        height: 48,
-        width: 48
-    },
-    actions: {
-        justifyContent: 'flex-end'
-    }
-}));
-export const Shipping = () => {
-    const classes = useStyles();
-    return (
-        <div>
-            <Card className={useStyles} style={{ position: 'relative',bottom:'0%',width :'100%', height :'100%',left:'0%'}}>
-                <CardHeader title="배송관리"/>
-                <Divider />
-                <table style={{width : '100%', height : '60%'}}>
-                    <th>주문일</th>
-                    <th>주문자명</th>
-                    <th>주문상태</th>
-                    <tr>
-                        <th>
-                            <div>2020-05-2 14:25</div>
-                        </th>
-                        <th>홍길동</th>
-                        <th>
-                            <select >
-                                <option selected>-- 상태 --</option>
-                                <option>주문접수</option>
-                                <option>결제완료</option>
-                                <option>배송준비중</option>
-                                <option>취소요청</option>
-                                <option>교환요청</option>
-                                <option>반품요청</option>
-                            </select>
-                        </th>
-                    </tr>
-                    <br/>
-                    <tr>
-                        <th>
-                            <div>2020-05-4 09:30</div>
-                        </th>
-                        <th>김유신</th>
-                        <th>
-                            <select >
-                                <option selected>-- 상태 --</option>
-                                <option>주문접수</option>
-                                <option>결제완료</option>
-                                <option>배송준비중</option>
-                                <option>취소요청</option>
-                                <option>교환요청</option>
-                                <option>반품요청</option>
-                            </select>
-                        </th>
-                    </tr>
-                    <br/>
-                    <tr>
-                        <th>
-                            <div>2020-06-22 15:32</div>
-                        </th>
-                        <th>신사임당</th>
-                        <th>
-                            <select >
-                                <option selected>-- 상태 --</option>
-                                <option>주문접수</option>
-                                <option>결제완료</option>
-                                <option>배송준비중</option>
-                                <option>취소요청</option>
-                                <option>교환요청</option>
-                                <option>반품요청</option>
-                            </select>
-                        </th>
-                    </tr>
-                    <br/>
-                    <tr>
-                        <th>
-                            <div>2020-07-21 11:12</div>
-                        </th>
-                        <th>이순신</th>
-                        <th>
-                            <select >
-                                <option selected>-- 상태 --</option>
-                                <option>주문접수</option>
-                                <option>결제완료</option>
-                                <option>배송준비중</option>
-                                <option>취소요청</option>
-                                <option>교환요청</option>
-                                <option>반품요청</option>
-                            </select>
-                        </th>
-                    </tr>
-                    <br/>
-                    <tr>
-                        <th>
-                            <div>2020-08-18 22:12</div>
-                        </th>
-                        <th>이승규</th>
-                        <th>
-                            <select >
-                                <option selected>-- 상태 --</option>
-                                <option>주문접수</option>
-                                <option>결제완료</option>
-                                <option>배송준비중</option>
-                                <option>취소요청</option>
-                                <option>교환요청</option>
-                                <option>반품요청</option>
-                            </select>
-                        </th>
-                    </tr>
-                    {/*<a className="btn btn-default">글쓰기</a>*/}
 
-                </table>
-                <CardActions className={classes.actions}>
-                    <Button
-                        color="primary"
-                        size="small"
-                        variant="text"
-                        href="/shipping"
-                    >
-                        전체보기<ArrowRightIcon/>
-                    </Button>
-                </CardActions>
-            </Card>
-        </div>);
+export const Shipping = () => {
+    const [data,setData] = useState([])
+    useEffect(()=>{
+        axios.get(`http://localhost:8080/shipping/findAll`)
+            .then((res)=>{
+                setData(res.data)
+            })
+            .catch(() =>{
+
+            })
+    },[])
+    const columns = [
+        {
+            title:'배송시작날짜',field:'shippingDate'
+        },
+        {
+            title:'배송자명',field: 'shippingName'
+        },
+        {
+            title:'배송상태',field: 'shippingStatus'
+        }
+    ]
+    const editable = {
+        onRowUpdate: (newData,oldData) =>
+            new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    const dataUpdate = [...data]
+                    const index = oldData.tableData.id;
+                    dataUpdate[index] = newData
+                    setData([...dataUpdate])
+                    resolve(
+                        axios.post(`http://localhost:8080/shipping/allUpdate`,[...dataUpdate])
+                            .then((res)=>{
+
+                            })
+                            .catch(()=>{
+                                alert("통신실패")
+                            })
+                    )
+                })
+            })
+    }
+    return (
+        <>
+            <table title="배송 진행 목록" parent="Users" />
+            <div className="container-fluid">
+                <div className="card">
+                    <div className="card-header">
+                        <h5>배송 진행 목록</h5>
+                    </div>
+                    <div className="col-sm-12">
+                        <div className="card">
+                            <div className="card-body sell-graph">
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card-body">
+                        <div className="clearfix"/>
+                        <div id="batchDelete" className="category-table user-list order-table coupon-list-delete">
+                            <List title={"배송"} data={data} columns={columns} editable={editable} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 

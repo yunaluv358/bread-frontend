@@ -1,15 +1,8 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import {
-  Button,
-  Card, CardActions,
-  CardHeader,
-  Divider
-} from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import {Button} from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import axios from 'axios'
-import {useHistory} from "react-router-dom";
+import MaterialTable from "material-table";
 
 const ProductRegistrationTypes = {REQUEST: 'MemberManagement/REQUEST'}
 const ProductRegistrationRequest = action => ({type: ProductRegistrationTypes.REQUEST, payload: action.payload})
@@ -20,88 +13,86 @@ const ProductRegistrationReducer = ( state, action ) => {
   }
 }
 
-
-
-const useStyles = makeStyles(() => ({
-  root: {
-    height: '100%'
-  },
-  content: {
-    padding: 0
-  },
-  image: {
-    height: 48,
-    width: 48
-  },
-  actions: {
-    justifyContent: 'flex-end'
-  }
-}));
-
 export const ProductRegistration = () => {
-  const [breadName,setBreadName] = useState('')
-  const [breadPrice,setBreadPrice] = useState('')
-  const [breadImage,setBreadImage] = useState('')
-  const [breadDescription,setBreadDescription] = useState('')
-  const history = useHistory();
-
-  const onRegistratHandle = e => {
-    e.preventDefault();
-    const registratData = {
-      breadName : breadName,
-      breadPrice : breadPrice,
-      breadImage : breadImage,
-      breadDescription : breadDescription
+  const [data,setData] = useState([])
+  useEffect(() => {
+    axios.get(`http://localhost:8080/bread/findAll`)
+        .then((res)=>{
+          // alert("빵리스트를 가져옵니다")
+          setData(res.data)
+        })
+        .catch(()=>{
+          // alert("재시도 바랍니다")
+        })
+  },[])
+  const columns = [
+    {
+      title:'빵이름',field:'breadName'
+    },
+    {
+      title:'빵사진', field: 'breadImage', editable: 'never',
+      render: rowData => <img src={rowData.breadImage} style={{width: 50, borderRadius: '50%'}} alt="" />
+    },
+    {
+      title:'빵가격',field:'breadPrice'
+    },
+    {
+      title:'상세설명',field:'breadDescription'
     }
-    axios.post(`http://localhost:8080/bread/product`, registratData)
-        .then((res) => {
-          alert("상품등록 성공!")
-          history.push("/dashboard")
-        })
-        .catch( error => {
-          alert("등록실패 재확인 해주세요")
-          throw (error)
-        })
 
+  ]
+  const editable = {
+    onRowUpdate: (newData,oldData) =>
+        new Promise((resolve,reject) =>{
+          setTimeout(()=>{
+            const dataUpdate = [...data]
+            const index = oldData.tableData.id;
+            dataUpdate[index] = newData
+            setData([...dataUpdate])
+            resolve()
+            axios.post(`http://localhost:8080/bread/allUpdate`, [...dataUpdate])
+                .then((res) => {
+                })
+                .catch(() => {
+                  alert("통신실패")
+                })
+          })
+        })
   }
-
-  const classes = useStyles();
   return (
-      <div>
-        <Card className={useStyles} style={{ position: 'relative',bottom:'0%',width :'100%', height :'80%',left:'0%'}}>
-          <CardHeader title="상품등록"/>
-          <Divider />
-          <table border={"1"} style={{width : '100%', height : '50%'}}>
-            <tr>
-              <th>상품명</th>
-              <th><input type="text" onChange={e => setBreadName(e.target.value)} /></th>
-            </tr>
-            <tr>
-              <th>판매가</th>
-              <th><input type="text" onChange={e => setBreadPrice(e.target.value)} /></th>
-            </tr>
-            <tr>
-              <th>이미지등록</th>
-              <th><input type="text" onChange={e => setBreadImage(e.target.value)} /></th>
-            </tr>
-            <tr>
-              <th>상품설명</th>
-              <th><input type="text" onChange={e => setBreadDescription(e.target.value)} /></th>
-            </tr>
-          </table>
-          <input type="button" value={"상품등록"} onClick={onRegistratHandle}/>
-          <CardActions className={classes.actions}>
-            <Button
-                color="primary"
-                size="small"
-                variant="text"
-                href="/productRegistration"
-            >
-              전체보기<ArrowRightIcon/>
-            </Button>
-          </CardActions>
-        </Card>
-      </div>
+      <>
+        <table title="빵리스트" parent="Users" />
+        <div className="container-fluid">
+          <div className="card">
+            <div className="card-header">
+              <h5>상품</h5>
+            </div>
+            <div className="col-sm-12">
+              <div className="card">
+                <div className="card-body sell-graph">
+                </div>
+              </div>
+            </div>
+            <div className="card-body">
+              <div className="clearfix"/>
+              <div id="batchDelete" className="category-table user-list order-table coupon-list-delete">
+                <MaterialTable title={"빵리스트"}
+                               data={data}
+                               columns={columns}
+                               editable={editable} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <Button
+            color="primary"
+            size="small"
+            variant="text"
+            href="/breadList"
+        >
+          전체보기<ArrowRightIcon/>
+        </Button>
+      </>
   );
 };
 
